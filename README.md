@@ -8,3 +8,6 @@
 ```
 .\main.exe .\trans.txt
 ```
+### 导入
+
+本工具用到了selenium库，导入前注意解决需求问题
