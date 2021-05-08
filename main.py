@@ -11,8 +11,8 @@ fileName = 'Translate-' + time.strftime("%Y-%m-%d_%H.%M.%S", time.localtime()) +
 result = open(fileName, 'w', encoding='utf-8')
 target = ''
 lines = 0
-for line in open('dist/trans.txt', encoding='utf-8', errors='ignore'):
-    if len(target) + len(line) >= 4970:
+for line in open('trans.txt', encoding='utf-8', errors='ignore'):
+    if len(target) + len(line) >= 4500:
         target = target + line
         lines += 1
         print(target)
