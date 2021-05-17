@@ -4,6 +4,12 @@
 
 ### 用法（Windows）
 
+使用前注意Chrome版本，如果不对请前往
+[此链接](http://npm.taobao.org/mirrors/chromedriver/)
+下载对应的chromedriver.exe
+
+
+
 下载最新的release，将待翻译文件放在同级目录，在终端/CMD中输入
 ```
 .\main.exe .\trans.txt
