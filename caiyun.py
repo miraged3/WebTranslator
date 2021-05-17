@@ -2,15 +2,15 @@ import time
 
 from selenium import webdriver
 
-print("有道翻译工具")
-print("by Mirage")
+print("彩云翻译工具")
+print("by Mirage 2021.5.17")
 print("使用前请确认待翻译文件trans.txt已放在本目录")
 print("正在启动chromedriver...")
 browser = webdriver.Chrome(r'chromedriver.exe')
-browser.get('https://fanyi.youdao.com/')
+browser.get('https://fanyi.caiyunapp.com/')
 print('等待网页加载...')
 time.sleep(3)
-inputArea = browser.find_element_by_id('inputOriginal')
+inputArea = browser.find_element_by_class_name('textinput')
 fileName = 'Translate-' + time.strftime("%Y-%m-%d_%H.%M.%S", time.localtime()) + '.txt'
 result = open(fileName, 'w', encoding='utf-8')
 target = ''
@@ -22,15 +22,13 @@ for line in open('trans.txt', encoding='utf-8', errors='ignore'):
         print(target)
         inputArea.send_keys(target)
         print('等待返回结果...')
+        print('行数：' + str(lines))
         time.sleep(6)
-        output = browser.find_element_by_id('transTarget')
         for index in range(lines):
-            xpath = '//div[@id=\'transTarget\']/p[' + str(index + 1) + ']/span'
-            text = browser.find_elements_by_xpath(xpath)
-            for index2 in range(len(text)):
-                print(text[index2].text)
-                if text[index2].text != '\n' and text[index2].text != '':
-                    result.write(text[index2].text)
+            xpath = '//div[@id=\'texttarget\']/p[' + str(index + 1) + ']/span'
+            text = browser.find_element_by_xpath(xpath)
+            print(text.text)
+            result.write(text.text)
             result.write('\n')
         result.flush()
         inputArea.clear()
