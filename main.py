@@ -2,6 +2,10 @@ import time
 
 from selenium import webdriver
 
+print("有道翻译工具")
+print("by Mirage")
+print("使用前请确认待翻译文件trans.txt已放在本目录")
+print("正在启动chromedriver...")
 browser = webdriver.Chrome(r'chromedriver.exe')
 browser.get('https://fanyi.youdao.com/')
 print('等待网页加载...')
