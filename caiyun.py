@@ -8,7 +8,7 @@ print("彩云翻译工具")
 print("by Mirage 2021.5.19")
 print("使用前请确认待翻译文件trans.txt已放在本目录")
 print("正在启动chromedriver...")
-browser = webdriver.Chrome(r'chromedriver.exe')
+browser = webdriver.Chrome(r'./chromedriver')
 browser.get('https://fanyi.caiyunapp.com/')
 print('等待网页加载...')
 time.sleep(3)
@@ -43,7 +43,7 @@ for line in open('trans.txt', encoding='utf-8', errors='ignore'):
                 print(text.text)
                 result.write(text.text)
                 result.write('\n')
-
+            result.flush()
             inputArea.clear()
             target = ''
             current = current + lines
@@ -56,6 +56,23 @@ for line in open('trans.txt', encoding='utf-8', errors='ignore'):
             target = target + line
             print(line)
             lines += 1
+inputArea.send_keys(target)
+print('等待返回结果...')
+print('行数：' + str(lines))
+time.sleep(random.randint(600, 1000) / 100)
+for index in range(lines):
+    xpath = '//div[@id=\'texttarget\']/p[' + str(index + 1) + ']/span'
+    text = browser.find_element_by_xpath(xpath)
+    print(text.text)
+    result.write(text.text)
+    result.write('\n')
+inputArea.clear()
+target = ''
+current = current + lines
+open('log', 'r+', encoding='utf-8', errors='ignore').truncate()
+open('log', 'r+', encoding='utf-8', errors='ignore').write(str(current))
+lines = 0
+result.flush()
 
 browser.quit()
 browser.stop_client()
