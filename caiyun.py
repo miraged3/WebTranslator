@@ -6,7 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 print("彩云翻译工具")
-print("by Mirage 2021.5.19")
+print("by Mirage 2023.10.5")
 print("使用前请确认待翻译文件trans.txt已放在本目录")
 print("正在启动chromedriver...")
 browser = webdriver.Chrome()
